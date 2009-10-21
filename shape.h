@@ -28,6 +28,19 @@ extern "C" {
 typedef unsigned char uchar;
 
 /* IMPORTANT: order matches ESRI shapefile spec, so we read them all at once! */
+typedef struct box1 {
+  double min;
+  double max;
+} box1_t;
+
+typedef struct box2 {
+  double xmin;
+  double ymin;
+
+  double xmax;
+  double ymax;
+} box2_t;
+
 typedef struct box4 {
   double xmin;
   double ymin;
@@ -42,24 +55,25 @@ typedef struct box4 {
   double mmax;
 } box4_t;
 
-typedef struct box2 {
-  double xmin;
-  double ymin;
-
-  double xmax;
-  double ymax;
-} box2_t;
-
-typedef struct point {
+typedef struct point2 {
   double x;
   double y;
-} point_t;
+} point2_t;
 
-typedef struct polygon {
-  struct polygon *next;
+typedef struct point4 {
+  double x;
+  double y;
+  double z;
+  double m;
+} point4_t;
+
+typedef struct shape {
+  struct shape *next;
   
   int record_no;
   int type;
+  
+  point4_t point;
   
   box2_t bounds;
   
@@ -67,12 +81,19 @@ typedef struct polygon {
   int num_points;
   
   int *parts;
-  point_t *points;
-} polygon_t;
+  int *part_types;
+  point2_t *points;
+  
+  box1_t *z_bounds;
+  double *z_values;
+  
+  box1_t *m_bounds;
+  double *m_values;
+} shape_t;
 
-void free_polygon(polygon_t *shp);
+void free_shape_contents(shape_t *shp);
 
-void dump_polygon(const polygon_t *shp);
+void dump_shape(const shape_t *shp);
 
 #ifdef __cplusplus
 }

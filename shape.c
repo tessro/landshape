@@ -1,13 +1,13 @@
 #include "shape.h"
 
-void free_polygon(polygon_t *shp)
+void free_shape_contents(shape_t *shp)
 {
   free(shp->parts);
+  free(shp->part_types);
   free(shp->points);
-  free(shp);
 }
 
-void dump_polygon(const polygon_t *shp)
+void dump_shape(const shape_t *shp)
 {
   printf("id=%i parts=%i points=%i\n", shp->record_no, shp->num_parts, shp->num_points);
   
