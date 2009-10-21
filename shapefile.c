@@ -79,6 +79,7 @@ void free_shapefile_contents(shapefile_t *sf)
   
   while (tmp = sf->head) {
     sf->head = sf->head->next;
+    free_shape_contents(tmp);
     free(tmp);
   }
 }
