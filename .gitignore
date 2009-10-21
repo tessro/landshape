@@ -1,0 +1,5 @@
+.eprj
+*.exe
+*.o
+data
+*.stackdump
