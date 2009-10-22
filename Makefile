@@ -3,7 +3,7 @@ CC = gcc
 
 default:  all
 
-all:  test
+all:  shp2kml
 
 shape.o: shape.h shape.c
 	$(CC) $(CFLAGS) -c shape.c
@@ -11,8 +11,8 @@ shape.o: shape.h shape.c
 shapefile.o: shape.o shapefile.c shapefile.h
 	$(CC) $(CFLAGS) -c shapefile.c
 
-test: shape.o shapefile.o main.c
-	$(CC) $(CFLAGS) main.c shape.o shapefile.o $(LINKOPT) -o test
+shp2kml: shape.o shapefile.o shp2kml.c
+	$(CC) $(CFLAGS) shp2kml.c shape.o shapefile.o $(LINKOPT) -o shp2kml
 
 clean:
 	rm -f *.o *.exe *.gch

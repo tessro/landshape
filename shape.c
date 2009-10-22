@@ -1,13 +1,13 @@
 #include "shape.h"
 
-void free_shape_contents(shape_t *shp)
+void ls_free_shape_contents(shape_t *shp)
 {
   free(shp->parts);
   free(shp->part_types);
   free(shp->points);
 }
 
-void dump_shape(const shape_t *shp)
+void ls_dump_shape(const shape_t *shp)
 {
   printf("id=%i parts=%i points=%i\n", shp->record_no, shp->num_parts, shp->num_points);
   

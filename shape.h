@@ -91,9 +91,9 @@ typedef struct shape {
   double *m_values;
 } shape_t;
 
-void free_shape_contents(shape_t *shp);
+void ls_free_shape_contents(shape_t *shp);
 
-void dump_shape(const shape_t *shp);
+void ls_dump_shape(const shape_t *shp);
 
 #ifdef __cplusplus
 }

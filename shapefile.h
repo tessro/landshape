@@ -36,14 +36,14 @@ typedef struct shapefile {
   shape_t *head;
 } shapefile_t;
 
-int read_shapefile(shapefile_t *sf, FILE* f);
+int ls_read_shapefile(shapefile_t *sf, FILE* f);
 
-void parse_file_header(shapefileinfo_t *s, const uchar *buf);
-void dump_file_header(const shapefileinfo_t *s);
+void ls_parse_file_header(shapefileinfo_t *s, const uchar *buf);
+void ls_dump_file_header(const shapefileinfo_t *s);
 
-void parse_shape(int type, shape_t *shp, const uchar *buf, const uint size);
+void ls_parse_shape(int type, shape_t *shp, const uchar *buf, const uint size);
 
-void free_shapefile_contents(shapefile_t *sf);
+void ls_free_shapefile_contents(shapefile_t *sf);
 
 #ifdef __cplusplus
 }
