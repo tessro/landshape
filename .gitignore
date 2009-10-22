@@ -3,3 +3,4 @@
 *.o
 data
 *.stackdump
+*.kml
