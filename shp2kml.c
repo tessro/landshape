@@ -4,11 +4,11 @@
 #include <string.h>
 #include <math.h>
 
-#include "shapefile.h"
+#include "mainfile.h"
 
 #define BUF_SIZE 100
 
-void write_kml(shapefile_t *sf, FILE *out);
+void write_kml(ls_mainfile_t *sf, FILE *out);
 
 int main(int argc, char** argv)
 {
@@ -26,13 +26,13 @@ int main(int argc, char** argv)
     return -1;
   }
   
-  shapefile_t sf;
-  bzero(&sf, sizeof(shapefile_t));
+  ls_mainfile_t sf;
+  bzero(&sf, sizeof(ls_mainfile_t));
   
   printf("Loading shapefile...");
   
-  if (!ls_read_shapefile(&sf, f)) {
-    printf("Couldn't read shapefile\n");
+  if (!ls_read_mainfile(&sf, f)) {
+    printf("Couldn't read mainfile\n");
     exit (1);
   }
   
@@ -48,7 +48,7 @@ int main(int argc, char** argv)
   write_kml(&sf, f);
   fclose(f);
   
-  ls_free_shapefile_contents(&sf);
+  ls_free_mainfile_contents(&sf);
   
   return 0;
 }
@@ -113,12 +113,12 @@ int dp_simplify(point2_t* pts_out, const point2_t* pts_in, uint len, double epsi
   }
 }
 
-void write_kml(shapefile_t *sf, FILE *out)
+void write_kml(ls_mainfile_t *sf, FILE *out)
 {
   fputs("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n", out);
   fputs("<kml xmlns=\"http://www.opengis.net/kml/2.2\">\n", out);
   
-  shape_t *sptr = sf->head;
+  ls_shape_t *sptr = sf->head;
   int part_idx, point_idx, part_end_idx, orig_len, new_len;
   point2_t* simple_pts;
   

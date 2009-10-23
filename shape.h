@@ -89,11 +89,11 @@ typedef struct shape {
   
   box1_t *m_bounds;
   double *m_values;
-} shape_t;
+} ls_shape_t;
 
-void ls_free_shape_contents(shape_t *shp);
+void ls_free_shape_contents(ls_shape_t *shp);
 
-void ls_dump_shape(const shape_t *shp);
+void ls_dump_shape(const ls_shape_t *shp);
 
 #ifdef __cplusplus
 }
