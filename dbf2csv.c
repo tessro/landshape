@@ -19,7 +19,7 @@ int main(int argc, char** argv)
   
   if (NULL == (f = fopen(argv[1], "r"))) {
     perror("Failed opening database");
-    return -1;
+    exit(1);
   }
   
   dbfinfo_t d;
